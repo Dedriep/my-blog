@@ -4,9 +4,10 @@ const {Comment, Post, User} = require('../../models')
 // add auth
 
 //get all users
+//route works
 router.get('/', (req,res) => {
     User.findAll({
-        attributes: ['username'],
+        attributes: {exclude: ['password'] },
     })
 .then(data => res.json(data))
 .catch(err =>{
@@ -24,7 +25,7 @@ router.get('/:id',(req,res)=> {
         include: [
             {
                 model: Comment,
-                attributes: ['comment_text', 'created_at'],
+                attributes: ['comment_text',],
                 include: {
                     mode: Post,
                     attributes: ['title']
@@ -33,28 +34,30 @@ router.get('/:id',(req,res)=> {
 
             {
                 model: Post,
-                attributes: ['title', 'post_content', 'created_at']
+                attributes: ['title', 'post_content']
             }
-        ]}
-        .then(data => {
-            if (!data) {
-                res.status(404).json({message: 'no user found'})
-                return               
-            } res.json(data)
-        })     
-        .catch(err =>{
-            console.log(error)
-            res.status(500).json(err)
-        })
-    )})
+        ]
+    })
+    .then(data => {
+        if (!data) {
+            res.status(404).json({message: 'no user found'})
+            return;            
+        } 
+        res.json(data)
+    })     
+    .catch(error =>{
+        console.log(error)
+        res.status(500).json(error)
+    })
+})
 
-// create a user
+// create a user - route works
 router.post('/', (req,res)=>{
     User.create({
         username: req.body.username,
-        email: req.session.emial,
-        password: req.body,password
-    }
+        email: req.body.email, //change to session
+        password: req.body.password
+    })
     .then(data => {
         req.session.save(() => {
             req.session.user_id = data.id
@@ -63,11 +66,11 @@ router.post('/', (req,res)=>{
         })
         res.json(data)
     })
-    .catch(err =>{
+    .catch(error =>{
         console.log(error)
-        res.status(500).json(err)
+        res.status(500).json(error)
     })
-    )})
+    })
 
     
     //login route -post
@@ -88,7 +91,7 @@ if (req.session.loggedIn) {
     })
 
 
-//delete user
+//delete user - route works
 router.delete('/:id', (req,res) => {
     User.destroy({
         where: {
@@ -101,9 +104,9 @@ router.delete('/:id', (req,res) => {
             return               
         } res.json(data)
     })     
-    .catch(err =>{
+    .catch(error =>{
         console.log(error)
-        res.status(500).json(err)
+        res.status(500).json(error)
     })
 }
 )

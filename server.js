@@ -43,7 +43,7 @@ app.use(express.urlencoded({extended:false}))
 // app.use(express.static(path.join( __dirname, 'public')))
 
 // routes
-app.use(require('./controllers/api'))
+app.use(require('./controllers/api')) //remove api once all routes are done
 
 sequelize.sync({ force: false}).then (() => {
     app.listen(PORT, () => console.log(`LISTENING ON ${PORT}`))

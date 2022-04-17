@@ -4,9 +4,40 @@ const { Comment, Post, User } = require('../../models')
 
 
 //get all posts
+//route works need to addd created at
 router.get('/', (req, res) => {
     Post.findAll({
-        attributes: ['id', 'title', 'created_at', 'post_content'],
+        attributes: ['id', 'title', 'post_content'],
+        include: [
+            {
+                model: Comment,
+                attributes: ['comment_text',],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        .then(data => res.json(data))
+        .catch(err => {
+            console.log(err)
+            res.status(500).json(err)
+        })
+})
+
+//find one post
+//route works
+
+router.get('/:id', (req, res) => {
+
+    Post.findOne({
+        where: { id: req.params.id },
+        attributes: ['id', 'title', ],
         include: [
             {
                 model: Comment,
@@ -29,35 +60,6 @@ router.get('/', (req, res) => {
         })
 })
 
-//find one post
-
-router.get('/:id', (req, res) => {
-
-    Post.findOne({
-        where: { id: req.params.id },
-        attributes: ['id', 'post_url', 'title', 'created_at'],
-        include: [
-            {
-                model: Comment,
-                attributes: ['comment_text', 'created_at',],
-                include: {
-                    model: User,
-                    attributes: ['username']
-                }
-            },
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
-        .then(data => res.json(data))
-        .catch(err => {
-            console.log(error)
-            res.status(500).json(err)
-        })
-})
-
 //create a post
 
 router.post('/', (req, res) => {
@@ -69,7 +71,7 @@ router.post('/', (req, res) => {
     })
         .then(data => res.json(data))
         .catch(err => {
-            console.log(error)
+            console.log(err)
             res.status(500).json(err)
         })
 
@@ -77,6 +79,7 @@ router.post('/', (req, res) => {
 
 
 //update a post
+//route works
 
 router.post('/:id', (req, res) => {
 
@@ -94,7 +97,7 @@ router.post('/:id', (req, res) => {
             } res.json(data)
         })
         .catch(err => {
-            console.log(error)
+            console.log(err)
             res.status(500).json(err)
         })
 
@@ -102,6 +105,7 @@ router.post('/:id', (req, res) => {
 
 
 //delete a post
+// route works
 
 router.delete('/:id', (req,res) =>{
 
@@ -115,7 +119,7 @@ router.delete('/:id', (req,res) =>{
             } res.json(data)
         })
         .catch(err => {
-            console.log(error)
+            console.log(err)
             res.status(500).json(err)
         })
 })

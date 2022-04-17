@@ -2,21 +2,21 @@ const {User} = require('../models')
 
 const userSeeds = [
     {
-        usermame: 'Dee123',
+        username: 'Dee123',
         email: 'Dee@123.com',
-        Password: 'hello123'
+        password: 'hello123'
     },
 
     {
-        usermame: 'Kicks123',
+        username: 'Kicks123',
         email: 'Kick@123.com',
-        Password: 'hello123'
+        password: 'hello123'
     },
 
     {
-        usermame: 'Iamunique',
+        username: 'Iamunique',
         email: 'Unique@123.com',
-        Password: 'hello123'
+        password: 'hello123'
     },
 ]
 
