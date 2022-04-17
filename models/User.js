@@ -38,11 +38,13 @@ User.init (
        
         // hooks
 
+    },
+
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         modelName: 'User'
-
     }
 )
 

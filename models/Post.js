@@ -9,7 +9,7 @@ Post.init(
         id: {
             type:DataTypes.INTEGER,
             allowNull: false,
-            primaryKeey: true,
+            primaryKey: true,
             autoIncrement: true,
         },
         title: {
@@ -23,18 +23,19 @@ Post.init(
 
         user_id: {
             type: DataTypes.INTEGER,
-            refrences: {
+            references: {
                 model: 'User',
                 key: 'id',
             }
         },
-        sequelize,
+
+    },
+    {sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'Post'
-
-    }
+        },
 )
 
 module.exports = Post
