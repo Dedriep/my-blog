@@ -4,13 +4,13 @@ const sequelize = require('../config/connection')
 
 class Post extends Model {}
 
-Post.init (
+Post.init(
     {
         id: {
             type:DataTypes.INTEGER,
             allowNull: false,
             primaryKeey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         title: {
             type: DataTypes.STRING,
@@ -21,13 +21,19 @@ Post.init (
             allowNull: false,
         },
 
-        user_id: {
+        username: {
             type: DataTypes.INTEGER,
             refrences: {
-                mode: User,
-                key: id
+                model: 'User',
+                key: 'id',
             }
-        }
+        },
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'Post'
+
     }
 )
 
