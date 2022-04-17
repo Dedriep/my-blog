@@ -21,7 +21,7 @@ Post.init(
             allowNull: false,
         },
 
-        username: {
+        user_id: {
             type: DataTypes.INTEGER,
             refrences: {
                 model: 'User',
