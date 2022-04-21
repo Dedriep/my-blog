@@ -11,7 +11,6 @@ const path = require('path')
 const app = express ()
 const PORT = process.env.PORT || 3001;
 
-
 //databse connection
 const sequelize = require('./config/connection')
 
@@ -43,7 +42,7 @@ app.use(express.urlencoded({extended:false}))
 // app.use(express.static(path.join( __dirname, 'public')))
 
 // routes
-app.use(require('./controllers/api')) //remove api once all routes are done
+app.use(require('./controllers')) //remove api once all routes are done
 
 sequelize.sync({ force: false}).then (() => {
     app.listen(PORT, () => console.log(`LISTENING ON ${PORT}`))
