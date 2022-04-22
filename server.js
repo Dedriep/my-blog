@@ -17,6 +17,8 @@ const sequelize = require('./config/connection')
 // express sessions
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
+
+//secret needs to be stored in .env file
 const sess = {
     secret: "Session ",
     cookie: {},

@@ -1,0 +1,39 @@
+{{!-- login form --}}
+<form>
+    <div class="sign-in form-group">
+        <label for="username-input">EMAIL</label>
+        <input type="username" class="form-control" id="username-input" aria-describedby="username"
+            placeholder="PLEASE ENTER USERNAME">
+        {{!-- <Ssmall id=" email" class="'form-text text-muted" --}} </div>
+
+            <div class="form-group">
+                <label for="password-input">PASSWORD</label>
+                <input type="password" class="form-control" id="password-input"
+                    placeholder="PLEASE ENTER YOUR PASSWORD">
+            </div>
+            <div>
+                <button type="submit">LOGIN</button>
+            </div>
+</form>
+
+{{!-- sign up form --}}
+
+<form>
+    <div class="sign-up form-group">
+        <label for="email-signup">EMAIL</label>
+        <input type="email" class="form-control" id="email-signup" aria-describedby="email"
+            placeholder="PLEASE ENTER AN EMAIL">
+    </div>
+    <div class="form-group">
+        <label for="password-signup">PASSWORD</label>
+        <input type="password" class="form-control" id="password-signup" placeholder="PLEASE ENTER A PASSWORD">
+    </div>
+    <div class="form-group">
+        <label for="username-input">USERNAME</label>
+        <input type="username" class="form-control" id="username-input" placeholder="PLEASE ENTER A USERNAME">
+    </div>
+    <div>
+        <button type="submit">SIGNUP</button>
+    </div>
+</form>
+    <script src="/javascript/login.js"></script>

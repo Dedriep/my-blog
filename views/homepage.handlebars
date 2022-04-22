@@ -1,8 +1,10 @@
 <div>
-    <ol>
+    <ol class="list-group">
         {{#each post}}
-        {{title}}
-        {{post_content}}
+        <div> {{title}}</div>
+
+        <span class="badge bg-primary rounded-pill">        {{post_content}}</span>
+
         {{user.username}}
         {{/each}}
 

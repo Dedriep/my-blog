@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const {Post, User, Comment} = require('../models')
+const { Post, User, Comment } = require('../models')
 
-router.get('/',(req,res) => {
+router.get('/', (req, res) => {
 
     Post.findAll({
         attributes: ['id', 'title', 'post_content'],
@@ -20,14 +20,37 @@ router.get('/',(req,res) => {
             }
         ]
     })
-    .then(data => {
-        const post= data.map(post => post.get({plain:true}))
-        res.render('homepage',{post} ,data[1].get({plain:true}))
-           })
-           .catch(err =>{
+        .then(data => {
+            const post = data.map(post => post.get({ plain: true }))
+            res.render('homepage', { post })
+        })
+        .catch(err => {
             console.log(err)
             res.status(500).json(err)
         })
+
+})
+
+
+//login page
+router.get('/login', (req, res) => {
+
+    if (req.session.loggedIn) {
+        res.redirect('/')
+        return
+    }
+    res.render('login')
+})
+
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
+    }
+
 
 })
 
