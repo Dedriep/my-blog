@@ -40,8 +40,9 @@ app.set('view engine', 'handlebars')
 //??
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+
 //connect backend and frontend
-// app.use(express.static(path.join( __dirname, 'public')))
+app.use(express.static(path.join( __dirname, 'public')))
 
 // routes
 app.use(require('./controllers')) //remove api once all routes are done

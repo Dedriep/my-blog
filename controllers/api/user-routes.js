@@ -77,7 +77,35 @@ router.post('/', (req,res)=>{
     
     //login route -post
 
+router.post('/login',(req,res) =>{
 
+    User.findOne(
+        {
+            where:{ username: req.body.username},
+        })
+        .then(data => {
+            if (!data) {
+                res.status(404).json({message: 'no user found'})
+                return;            
+            } 
+
+            const password = data.checkPassword(req.body.password)
+
+            if (!password) {
+                res.status(404).json({message: ' Incorrect pssowrd'})
+                return;  
+        }
+
+        req.session.save(() => {
+            req.session.user_id = data.id,
+            req.session.email = data.email,
+            req.session.loggedIn = true
+
+        })
+
+    })
+    
+    })
     //logout route 
     router.post('/logout', (req,res) => {
 
@@ -91,6 +119,13 @@ if (req.session.loggedIn) {
         res.status(404).end()
     }
     })
+
+
+
+    //update user
+// router.put(
+
+// )
 
 
 //delete user - route works
