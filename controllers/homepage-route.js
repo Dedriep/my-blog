@@ -54,4 +54,9 @@ router.post('/logout', (req, res) => {
 
 })
 
+router.get('/post/:id', (req,res) =>{
+
+
+})
+
 module.exports = router

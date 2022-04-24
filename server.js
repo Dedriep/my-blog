@@ -2,6 +2,9 @@ const express = require('express')
 // sessions
 const session = require('express-session')
 
+//session password
+require('dotenv').config()
+
 //require handlebars
 const exphbs = require('express-handlebars')
 
@@ -20,7 +23,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
 //secret needs to be stored in .env file
 const sess = {
-    secret: "Session ",
+    secret: secretPW,
     cookie: {},
     resave: false,
     saveUninitialized: true,
