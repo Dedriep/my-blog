@@ -23,7 +23,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
 //secret needs to be stored in .env file
 const sess = {
-    secret: secretPW,
+    secret: 'secret',
     cookie: {},
     resave: false,
     saveUninitialized: true,

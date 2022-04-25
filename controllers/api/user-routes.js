@@ -63,10 +63,10 @@ router.post('/', (req,res)=>{
     .then(data => {
         req.session.save(() => {
             req.session.user_id = data.id
-            req.session.username = data.username
+            req.session.email = data.email
             req.session.loggedIn = true
+            res.json(data)
         })
-        res.json(data)
     })
     .catch(error =>{
         console.log(error)
@@ -98,9 +98,9 @@ router.post('/login',(req,res) =>{
 
         req.session.save(() => {
             req.session.user_id = data.id,
-            req.session.email = data.email,
+            req.session.username = data.username,
             req.session.loggedIn = true
-
+            res.json({user:data})
         })
 
     })
