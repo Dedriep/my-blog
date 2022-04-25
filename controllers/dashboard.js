@@ -31,4 +31,34 @@ router.get('/',(req, res) => {
 
 })
 
+
+router.get('/edit/:id', (req,res) => {
+    Post.findByPk(req.params.id,{
+        attributes: ['id', 'title','post_content' ],
+        include: [
+            {
+                model: Comment,
+                attributes: ['comment_text', 'created_at',],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+        .then(data => {
+            if(!data){
+                res.status(404).json({message:"no post found!"})
+                return
+            }
+            const post = data.get({plain:true})
+            res.render('edit-post',{post, loggedIn:true})
+        })
+
+    })
+
 module.exports = router

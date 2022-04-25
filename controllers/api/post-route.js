@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
 
     Post.findOne({
         where: { id: req.params.id },
-        attributes: ['id', 'title', ],
+        attributes: ['id', 'title', "post_content"],
         include: [
             {
                 model: Comment,

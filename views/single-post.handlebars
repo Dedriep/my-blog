@@ -1,17 +1,25 @@
-<article>
-    <h2>{{post.title}}</h2>
-    <p>{{post.post_content}}</p>
-    <a href= "/post{{post.id}}"> {{post.comments.length}} comment(s)</a>
-</article>
+{{!-- <article>
+    <div class="card" style="width: vw;">
+        <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
 
-<form class="comment-form">
+
+            <p class="card-text">{{post.post_content}}</p>
+            <a href="/post{{post.id}}"> {{post.comments.length}} comment(s)</a>
+        </div>
+    </div>
+</article> --}}
+
+
+{{> post-info post }}
+<form class="">
     <div>
         <textarea name="comment_content"></textarea>
     </div>
 
-<div>
-    <button type= "submit">add comment</button>
-</div>
+    <div>
+        <button type="submit">add comment</button>
+    </div>
 
 </form>
 
@@ -20,4 +28,4 @@
 
 </div>
 
-<script src="/javascript/comment.js" > </script>
+<script src="/javascript/comment.js"> </script>

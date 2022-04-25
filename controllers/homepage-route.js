@@ -32,6 +32,8 @@ router.get('/', (req, res) => {
 })
 
 
+
+
 //login page
 router.get('/login', (req, res) => {
 
@@ -57,7 +59,7 @@ router.post('/logout', (req, res) => {
 router.get('/post/:id', (req,res) =>{
     Post.findOne({
         where: { id: req.params.id },
-        attributes: ['id', 'title', ],
+        attributes: ['id', 'title','post_content' ],
         include: [
             {
                 model: Comment,
@@ -79,7 +81,7 @@ router.get('/post/:id', (req,res) =>{
                 return
             }
             const post = data.get({plain:true})
-            res.render('singlepost',{post})
+            res.render('single-post',{post, loggedIn:req.session.loggedIn})
         })
 
         .catch(err => {

@@ -1,0 +1,19 @@
+body{
+    color: gray
+}
+
+#hero {
+    background-image: url( "./images/hero.png") ;
+height: 200px;
+width: vw;
+background-size: cover;
+background-position: center;
+}
+
+
+
+footer {
+    background-color: black;
+   
+    color: white;
+}
