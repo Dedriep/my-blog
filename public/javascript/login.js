@@ -9,7 +9,7 @@ async function signUp(event) {
 
 
     if (username && email && password) {
-        const response = await fetch('/api/users/login', {
+        const response = await fetch('/api/users', {
 
             method: "post",
             body:JSON.stringify({username,email, password}),
@@ -25,7 +25,7 @@ async function signUp(event) {
     }
 }
 
-document.querySelectior('.sign-up').addEventlistener('submit',signUp)
+document.querySelectior('#signupBtn').addEventlistener('submit',signUp)
 
 
 
@@ -35,7 +35,7 @@ const username = document.querySelector('#username-input').value.trim()
 const password = document.querySelector('#passsword-input').value.trim()
 
     if(username && password) {
-        const response = await fetch ('/api/users', {
+        const response = await fetch ('/api/users/login', {
             method: "post",
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'}
@@ -49,4 +49,4 @@ const password = document.querySelector('#passsword-input').value.trim()
         }
 }
 
-document.querySelectior('.sign-in').addEventlistener('submit',signIn)
+document.querySelectior('#signinBtn').addEventlistener('submit',signIn)
