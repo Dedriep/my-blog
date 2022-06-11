@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
     })
         .then(data => {
             const post = data.map(post => post.get({ plain: true }))
-            res.render('homepage', { post, loggedIn:req.session.loggedIn })
+            console.log(post)
+            res.render('homepage', { post,loggedIn:req.session.loggedIn})
         })
         .catch(err => {
             console.log(err)

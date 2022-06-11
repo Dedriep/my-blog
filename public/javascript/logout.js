@@ -1,4 +1,3 @@
-const { post } = require("../../controllers");
 
 async function logout () {
     const response = await fetch('/api/users/logout', {

@@ -5,7 +5,7 @@ async function signUp(event) {
 
     const username = document.querySelector('#username-signup').value.trim()
     const email = document.querySelector('#email-signup').value.trim()
-    const password = document.querySelector('#username-input').value.trim()
+    const password = document.querySelector('#username-signup').value.trim()
 
 
     if (username && email && password) {
@@ -25,7 +25,7 @@ async function signUp(event) {
     }
 }
 
-document.querySelectior('#signupBtn').addEventlistener('submit',signUp)
+document.querySelector('#signupBtn').addEventlistener('submit',signUp)
 
 
 
@@ -49,4 +49,4 @@ const password = document.querySelector('#passsword-input').value.trim()
         }
 }
 
-document.querySelectior('#signinBtn').addEventlistener('submit',signIn)
+document.querySelector('#signinBtn').addEventlistener('submit',signIn)
